@@ -26,7 +26,8 @@ class Rotation(object):
     
     def doInput(self):
         print("Setting rotation skills...")
-        for key in self.cooldowns:
+        keys = input("Which keys should we set? (qwerasdf)")
+        for key in keys:
             self.cooldowns[key] = input("Skill "+key+" cooldown?: ")
         self.fuzziness = input("Fuzziness? (leeway) :")
         
