@@ -1,25 +1,26 @@
 
 class Rotation(object):
+    #qwer asdf
     cooldowns = {
-        'one' : '0',
-        'two' : '0',
-        'three' : '0',
-        'four' : '0',
-        'five' : '0',
-        'six' : '0',
-        'seven' : '0',
-        'eight' : '0'
+        'q' : 0,
+        'w' : 0,
+        'e' : 0,
+        'r' : 0,
+        'a' : 0,
+        's' : 0,
+        'd' : 0,
+        'f' : 0
         }
     
     skills = {
-        'one' : '',
-        'two' : '',
-        'three' : '',
-        'four' : '',
-        'five' : '',
-        'six' : '',
-        'seven' : '',
-        'eight' : ''
+        'q' : '',
+        'w' : '',
+        'e' : '',
+        'r' : '',
+        'a' : '',
+        's' : '',
+        'd' : '',
+        'f' : ''
         }
     
     
@@ -30,7 +31,7 @@ class Rotation(object):
         self.fuzziness = input("Fuzziness? (leeway) :")
         
     def calculateRotation(self):
-        
+        print("Placeholder")
 r = Rotation()
 
 r.doInput()
