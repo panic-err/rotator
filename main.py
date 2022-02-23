@@ -15,6 +15,8 @@ class Rotation(object):
         }
     
     def doInput(self):
+        count = 0
+        inp = list()
         print("Setting rotation skills...")
         self.keys = input("Which keys should we set? (qwerasdf)")
         self.biggest = 0
@@ -22,10 +24,17 @@ class Rotation(object):
             self.cooldowns[key] = int(input("Skill "+key+" cooldown?: "))
             if self.cooldowns[key] > self.biggest:
                 self.biggest = self.cooldowns[key]
-        #print(self.queue[0])
-        self.coolQueue = list(itertools.permutations(self.cooldowns))
-        #print(self.coolQueue)
+            count += 1
+        for h in self.cooldowns:
+            if self.cooldowns[h] > 0:
+                inp.append(h)
+        self.coolQueue = list(itertools.permutations(inp))
         self.fuzziness = int(input("Fuzziness? (leeway) :"))
+    def comp(self, first, second):
+        for v in first:
+            if v in second:
+                return True
+        return False
     def findOut(self):
         out = list()
         for i in self.coolQueue:
@@ -39,20 +48,14 @@ class Rotation(object):
                     dontloop = True
                 if dontloop == False:
                     tot = self.cooldowns[x] + tot
-                if tot > first and tot > first + self.fuzziness:
-                    break
-                elif tot < first:
-                    print("Total less than first: "+ str(tot) + ":" +str(first))
-                elif (tot == first and dontloop == False) or tot == first + self.fuzziness:
-                    if tot <= first + self.fuzziness and tot >= first:
-                        print("Total falls within the fuzz range")
+                if (tot == first and dontloop == False) or (tot <= first + self.fuzziness and tot >= first)and dontloop == False:
+
                     out.append(i[:count+1])
-                    #return i[:count+1], count
+                    break
                 count += 1
+        out = list(dict.fromkeys(out))
         return out
 r = Rotation()
 
 r.doInput()
-#print(r.addCooldown(1, 2))
 print(r.findOut())
-#print(r.recurse())
