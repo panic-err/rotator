@@ -30,11 +30,7 @@ class Rotation(object):
                 inp.append(h)
         self.coolQueue = list(itertools.permutations(inp))
         self.fuzziness = int(input("Fuzziness? (leeway) :"))
-    def comp(self, first, second):
-        for v in first:
-            if v in second:
-                return True
-        return False
+
     def findOut(self):
         out = list()
         for i in self.coolQueue:
