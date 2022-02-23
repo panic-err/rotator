@@ -27,6 +27,7 @@ class Rotation(object):
         #print(self.coolQueue)
         self.fuzziness = int(input("Fuzziness? (leeway) :"))
     def findOut(self):
+        out = list()
         for i in self.coolQueue:
             tot = 0
             count = 0
@@ -39,12 +40,16 @@ class Rotation(object):
                 if dontloop == False:
                     tot = self.cooldowns[x] + tot
                 if tot > first and tot > first + self.fuzziness:
-                    return False
+                    break
                 elif tot < first:
                     print("Total less than first: "+ str(tot) + ":" +str(first))
-                elif tot == first and dontloop == False:
-                    return i[:count+1], count
+                elif (tot == first and dontloop == False) or tot == first + self.fuzziness:
+                    if tot <= first + self.fuzziness and tot >= first:
+                        print("Total falls within the fuzz range")
+                    out.append(i[:count+1])
+                    #return i[:count+1], count
                 count += 1
+        return out
 r = Rotation()
 
 r.doInput()
